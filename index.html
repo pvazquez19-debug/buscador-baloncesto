@@ -430,8 +430,8 @@ function execPrint(){
   var tw=document.getElementById('tw'),orig=tw.innerHTML;tw.innerHTML=h;
   setTimeout(function(){window.print();setTimeout(function(){tw.innerHTML=orig;document.getElementById('phdr').style.display='none';var s=document.getElementById('pst');if(s)s.parentNode.removeChild(s);},500);},100);
 }
-var CMP_STATS = ["Points", "Points per player's possession", "Rebounds", "Offensive rebounds", "Defensive rebounds", "Assists", "Steals", "Turnovers", "Blocks", "Field goals made", "2-pt field goals made", "3-pt field goals made", "Free throws made", "Fouls drawn", "Plus/Minus", "Assists to turnovers", "Deflections"];
-var CMP_LB = {"Points": "Puntos", "Points per player's possession": "Pts/Pos", "Rebounds": "Rebotes", "Offensive rebounds": "Reb. Of.", "Defensive rebounds": "Reb. Def.", "Assists": "Ast.", "Steals": "Rob.", "Turnovers": "Perd.", "Blocks": "Tap.", "Field goals made": "TC Conv.", "2-pt field goals made": "T2 Conv.", "3-pt field goals made": "T3 Conv.", "Free throws made": "TL Conv.", "Fouls drawn": "F. Rec.", "Plus/Minus": "+/-", "Assists to turnovers": "Ast/Perd", "Deflections": "Deflec."};
+var CMP_STATS = ["Games played", "Minutes", "Points", "Points per player's possession", "Field goals made", "Field goals attempted", "2-pt field goals made", "2-pt field goals attempted", "3-pt field goals made", "3-pt field goals attempted", "Free throws made", "Free throws attempted", "Offensive rebounds", "Defensive rebounds", "Rebounds", "Assists", "Steals", "Turnovers", "Assists to turnovers", "Blocks", "Fouls", "Fouls drawn", "Plus/Minus", "Deflections", "Screens off made", "Screens off attempted", "PnR Handlers made", "PnR Handlers attempted", "Usage Percentage", "True shooting percentage", "Effective field goal percentage", "Field goals, %", "2-pt field goals, %", "3-pt field goals, %", "Free throws, %", "Screens off, %", "PR Handler, %"];
+var CMP_LB = {"Games played": "Partidos", "Minutes": "Min", "Points": "Puntos", "Points per player's possession": "Pts/Pos", "Field goals made": "TC Conv.", "Field goals attempted": "TC Int.", "2-pt field goals made": "T2 Conv.", "2-pt field goals attempted": "T2 Int.", "3-pt field goals made": "T3 Conv.", "3-pt field goals attempted": "T3 Int.", "Free throws made": "TL Conv.", "Free throws attempted": "TL Int.", "Offensive rebounds": "Reb. Of.", "Defensive rebounds": "Reb. Def.", "Rebounds": "Rebotes", "Assists": "Ast.", "Steals": "Rob.", "Turnovers": "Perd.", "Assists to turnovers": "Ast/Perd", "Blocks": "Tap.", "Fouls": "F. Com.", "Fouls drawn": "F. Rec.", "Plus/Minus": "+/-", "Deflections": "Deflec.", "Screens off made": "Bloq. Ind. Conv.", "Screens off attempted": "Bloq. Ind. Int.", "PnR Handlers made": "BH P&R Conv.", "PnR Handlers attempted": "BH P&R Int.", "Usage Percentage": "% Uso", "True shooting percentage": "% TS", "Effective field goal percentage": "% EFG", "Field goals, %": "% TC", "2-pt field goals, %": "% T2", "3-pt field goals, %": "% T3", "Free throws, %": "% TL", "Screens off, %": "% Bloq. Ind.", "PR Handler, %": "% BH P&R"};
 var CMP_COLORS = ["#e94560", "#0f3460", "#1e8449", "#d35400", "#6c3483"];
 var cmpPlayers = [];
 var cmpStatSel = CMP_STATS.slice();
@@ -622,7 +622,7 @@ function normalize(stat,val){
 
 // ── RADAR CHART (pure SVG) ────────────────────────────────────────────────────
 function drawRadar(out){
-  var stats=cmpStatSel.slice(0,12);
+  var stats=cmpStatSel.slice(0,16);
   var n=stats.length;
   if(n<3){alert('Selecciona al menos 3 estadisticas para el radar.');return;}
 
@@ -727,7 +727,7 @@ function drawRadar(out){
 
 // ── BAR CHART (grouped, pure SVG) ────────────────────────────────────────────
 function drawBar(out){
-  var stats = cmpStatSel.slice(0,12);
+  var stats = cmpStatSel.slice(0,16);
   var n = stats.length, m = cmpPlayers.length;
   if(!n){alert('Selecciona al menos una estadistica.');return;}
 
